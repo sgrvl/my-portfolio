@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import styled from 'styled-components';
 
 const TopButton = styled.div`
@@ -35,15 +34,13 @@ const BottomButton = styled.div`
 
 const Button = ({ text, href, icon }) => (
 	<>
-		<Link href={href} passHref>
-			<div>
-				<TopButton>
-					{icon}
-					{text}
-				</TopButton>
-				<BottomButton />
-			</div>
-		</Link>
+		<a href={href} target='_blank' rel='noreferrer'>
+			<TopButton>
+				{icon}
+				{text}
+			</TopButton>
+			<BottomButton />
+		</a>
 	</>
 );
 

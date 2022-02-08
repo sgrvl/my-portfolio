@@ -19,7 +19,7 @@ const NavDesktop = () => (
 	<Links>
 		<NavLink link='/' text='Accueil' />
 		<NavLink link='/projets' text='Projets' />
-		<Button href={'/projets'} icon={<Icon />} text={'C.V.'} />
+		<Button href={'/CV_Simon_Gravel.pdf'} icon={<Icon />} text={'C.V.'} />
 	</Links>
 );
 
