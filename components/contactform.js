@@ -6,9 +6,8 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl =
-	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxZGxtdXhkdXd6ZHNnY3BzYnBlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDQyODkwMzgsImV4cCI6MTk1OTg2NTAzOH0.9Y7Hlq1R9kcnWiyzmoFYve4FHIMuVp7U_keDrYOwyiY';
-const supabaseKey = 'https://zqdlmuxduwzdsgcpsbpe.supabase.co';
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const Form = styled.form`
