@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Button from './button';
 import { useFormik } from 'formik';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { useState } from 'react';
-import { supabase } from '@supabase/supabase-js';
+import { useState, useEffect } from 'react';
+import { supabase } from '../utils/supabaseClient';
 
 const Form = styled.form`
 	display: flex;
@@ -93,6 +93,7 @@ const validate = (values) => {
 const ContactForm = () => {
 	const [captcha, setCaptcha] = useState(false);
 	const [showCaptcha, setShowCaptcha] = useState(false);
+	const [dbData, setData] = useState('');
 	const recaptchaRef = React.createRef();
 
 	const onSubmitRepatcha = async () => {
@@ -103,7 +104,7 @@ const ContactForm = () => {
 
 	const sendSupabase = async (values) => {
 		const { data, error } = await supabase
-			.from('contact-form')
+			.from('contactForm')
 			.insert([{ nom: values.nom, courriel: values.courriel, message: values.message }]);
 
 		if (error) {
@@ -121,8 +122,8 @@ const ContactForm = () => {
 		onSubmit: (values) => {
 			onSubmitRepatcha().then((token) => {
 				if (token) {
-					console.log(values);
 					sendSupabase(values);
+					setData(values);
 					formik.resetForm();
 					setShowCaptcha(false);
 				}
