@@ -4,7 +4,7 @@ import Button from './button';
 import { useFormik } from 'formik';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useState, useEffect } from 'react';
-import { supabase } from '../utils/supabaseClient';
+import supabase from '../utils/supabaseClient';
 
 const Form = styled.form`
 	display: flex;
