@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Card from '../../components/cardProjet';
-import data from '../../public/data.json';
+import data from '../../components/data';
 
 const Title = styled.h1`
 	text-align: center;
@@ -18,6 +18,10 @@ const Grid = styled.div`
 	justify-content: center;
 	gap: 2em;
 	margin: 0 3em;
+`;
+
+const TechImg = styled.img`
+	max-height: 24px;
 `;
 
 export default function Projets() {
@@ -40,13 +44,7 @@ export default function Projets() {
 								<p>{data[d].desc}</p>
 								<div className='tech-logos'>
 									{data[d].logos.map((l, index) => (
-										<Image
-											key={`Logo ${index}`}
-											src={l.src}
-											alt={l.alt}
-											width={l.width}
-											height={l.height}
-										/>
+										<TechImg key={`Logo ${index}`} src={l.src} alt={l.alt} />
 									))}
 								</div>
 								<Link href={`/projets/${d}`} passHref>

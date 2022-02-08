@@ -29,7 +29,7 @@ const FixedLinks = ({ theme, setTheme }) => (
 		<Wrap>
 			<ThemeToggle theme={theme} setTheme={setTheme} />
 			<Mail />
-			<Github />
+			<Github link={'https://github.com/sgrvl'} />
 			<LinkedIn />
 			<Line />
 		</Wrap>

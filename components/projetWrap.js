@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Projet from './projet';
-import data from '../public/data.json';
+import data from './data';
 
 const Wrap = styled.div`
 	display: flex;
@@ -43,6 +43,10 @@ const LinkMore = styled.a`
 	font-weight: 500;
 `;
 
+const TechImg = styled.img`
+	max-height: 24px;
+`;
+
 export default function ProjetWrap() {
 	return (
 		<BigWrap>
@@ -64,13 +68,7 @@ export default function ProjetWrap() {
 								<p>{data[d].desc}</p>
 								<div className='tech-logos'>
 									{data[d].logos.map((l, index) => (
-										<Image
-											key={`Logo ${index}`}
-											src={l.src}
-											alt={l.alt}
-											width={l.width}
-											height={l.height}
-										/>
+										<TechImg key={`Logo ${index}`} src={l.src} alt={l.alt} />
 									))}
 								</div>
 								<Link href={`/projets/${d}`} passHref>

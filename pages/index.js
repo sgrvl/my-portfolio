@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
 import styled from 'styled-components';
 import wavingHand from '../public/images/waving-hand.png';
 import MapPin from '../components/mapPin';
