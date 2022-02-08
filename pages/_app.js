@@ -1,5 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Layout from '../components/layout';
+import '../styles/font.css';
 
 const GlobalStyle = createGlobalStyle`
 	* {

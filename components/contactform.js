@@ -4,6 +4,12 @@ import Button from './button';
 import { useFormik } from 'formik';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl =
+	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxZGxtdXhkdXd6ZHNnY3BzYnBlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDQyODkwMzgsImV4cCI6MTk1OTg2NTAzOH0.9Y7Hlq1R9kcnWiyzmoFYve4FHIMuVp7U_keDrYOwyiY';
+const supabaseKey = 'https://zqdlmuxduwzdsgcpsbpe.supabase.co';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const Form = styled.form`
 	display: flex;
@@ -74,10 +80,10 @@ const validate = (values) => {
 		errors.nom = 'Must be 15 characters or less';
 	}
 
-	if (!values.email) {
-		errors.email = 'Required';
-	} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-		errors.email = 'Invalid email address';
+	if (!values.courriel) {
+		errors.courriel = 'Required';
+	} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.courriel)) {
+		errors.courriel = 'Invalid email address';
 	}
 
 	if (!values.message) {
@@ -94,20 +100,38 @@ const ContactForm = () => {
 	const [showCaptcha, setShowCaptcha] = useState(false);
 	const recaptchaRef = React.createRef();
 
+	const onSubmitRepatcha = async () => {
+		const token = await recaptchaRef.current.executeAsync();
+
+		return token;
+	};
+
+	const sendSupabase = async (values) => {
+		const { data, error } = await supabase
+			.from('contact-form')
+			.insert([{ nom: values.nom, courriel: values.courriel, message: values.message }]);
+
+		if (error) {
+			console.log(error);
+		}
+	};
+
 	const formik = useFormik({
 		initialValues: {
 			nom: '',
-			email: '',
+			courriel: '',
 			message: '',
 		},
 		validate,
 		onSubmit: (values) => {
-			if (captcha) {
-				alert(JSON.stringify(values, null, 2));
-				recaptchaRef.current.execute();
-				formik.resetForm();
-				setShowCaptcha(false);
-			}
+			onSubmitRepatcha().then((token) => {
+				if (token) {
+					console.log(values);
+					sendSupabase(values);
+					formik.resetForm();
+					setShowCaptcha(false);
+				}
+			});
 		},
 	});
 
@@ -137,13 +161,13 @@ const ContactForm = () => {
 					<label htmlFor='courriel'>Courriel</label>
 					<input
 						type='email'
-						name='email'
-						id='email'
+						name='courriel'
+						id='courriel'
 						onChange={formik.handleChange}
 						onBlur={formik.handleBlur}
-						value={formik.values.email}
+						value={formik.values.courriel}
 					/>
-					{formik.touched.email && formik.errors.email ? <Error>{formik.errors.email}</Error> : null}
+					{formik.touched.courriel && formik.errors.courriel ? <Error>{formik.errors.courriel}</Error> : null}
 				</InputGroup>
 				<InputGroup>
 					<label htmlFor='message'>Message</label>
@@ -157,6 +181,7 @@ const ContactForm = () => {
 					{formik.touched.message && formik.errors.message ? <Error>{formik.errors.message}</Error> : null}
 				</InputGroup>
 				<ReCAPTCHA
+					ref={recaptchaRef}
 					sitekey='6LfKTGAeAAAAAFu2Zvm1XLPEi_2Dm0D3lqKQ_0CZ'
 					onChange={() => setCaptcha(!captcha)}
 					size='invisible'

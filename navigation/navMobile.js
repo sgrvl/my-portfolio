@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import NavLink from './navLink';
 import Button from './navButton';
 import Icon from '../components/icon';
+import NavHamburger from './navHamburger';
 
 const Nav = styled.div`
 	@media (min-width: 650px) {
@@ -9,11 +10,9 @@ const Nav = styled.div`
 	}
 `;
 
-const Hamburger = styled.div``;
-
 const NavMobile = () => (
 	<Nav>
-		<Hamburger></Hamburger>
+		<NavHamburger />
 	</Nav>
 );
 
