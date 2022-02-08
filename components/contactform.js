@@ -22,6 +22,7 @@ const Form = styled.form`
 		border-radius: 4px;
 		background-color: ${(props) => props.theme.form};
 		padding: 1em;
+		color: ${(props) => props.theme.darkshades};
 
 		&:focus {
 			outline-color: ${(props) => props.theme.main};
@@ -70,21 +71,19 @@ const Error = styled.div`
 const validate = (values) => {
 	const errors = {};
 	if (!values.nom) {
-		errors.nom = 'Required';
-	} else if (values.nom.length > 15) {
-		errors.nom = 'Must be 15 characters or less';
+		errors.nom = 'Champs obligatoire';
+	} else if (values.nom.length > 70) {
+		errors.nom = 'Maximum 70 caractères';
 	}
 
 	if (!values.courriel) {
-		errors.courriel = 'Required';
+		errors.courriel = 'Champs obligatoire';
 	} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.courriel)) {
-		errors.courriel = 'Invalid email address';
+		errors.courriel = 'Adresse courriel invalide';
 	}
 
 	if (!values.message) {
-		errors.message = 'Required';
-	} else if (values.message.length < 1) {
-		errors.message = 'Must not be empty';
+		errors.message = 'Champs obligatoire';
 	}
 
 	return errors;
@@ -93,7 +92,6 @@ const validate = (values) => {
 const ContactForm = () => {
 	const [captcha, setCaptcha] = useState(false);
 	const [showCaptcha, setShowCaptcha] = useState(false);
-	const [dbData, setData] = useState('');
 	const recaptchaRef = React.createRef();
 
 	const onSubmitRepatcha = async () => {
@@ -123,7 +121,6 @@ const ContactForm = () => {
 			onSubmitRepatcha().then((token) => {
 				if (token) {
 					sendSupabase(values);
-					setData(values);
 					formik.resetForm();
 					setShowCaptcha(false);
 				}

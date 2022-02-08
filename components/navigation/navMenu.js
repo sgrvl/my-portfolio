@@ -47,9 +47,10 @@ const BigWrap = styled.div`
 `;
 
 const NavMenu = ({ children, open, handleOpen }) => (
-	<BigWrap open={open} onClick={handleOpen}>
+	<>
+		<BigWrap open={open} onClick={handleOpen} />
 		<Menu open={open}>{children}</Menu>
-	</BigWrap>
+	</>
 );
 
 export default NavMenu;
