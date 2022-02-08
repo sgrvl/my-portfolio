@@ -5,23 +5,33 @@ const StyledLink = styled.a`
 	text-decoration: none;
 	font-size: 24px;
 	color: ${(props) => props.theme.darkshades};
+	transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
 
-	&:hover,
-	&:visited:hover,
+	${(props) =>
+		props.active &&
+		`
+		&:hover,
+		&:visited:hover {
+		color: ${props.theme.main};
+		transform: translate(-2px, -2px);
+	}
+	`}
+
 	&:focus,
 	&:active {
 		color: ${(props) => props.theme.main};
-		text-decoration: underline;
 	}
 
 	&:visited {
-		color: inherit;
+		color: ${(props) => props.theme.darkshades};
 	}
 `;
 
-const NavLink = ({ link, text }) => (
+const NavLink = ({ link, text, active, handleOpen }) => (
 	<Link href={link} passHref>
-		<StyledLink>{text}</StyledLink>
+		<StyledLink onClick={handleOpen} active={!active} className={active ? 'activeLink' : null} text={text}>
+			{text}
+		</StyledLink>
 	</Link>
 );
 

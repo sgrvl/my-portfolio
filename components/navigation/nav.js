@@ -17,7 +17,7 @@ const Navbar = styled.header`
 	}
 `;
 
-const Nav = () => (
+const Nav = ({ theme, setTheme }) => (
 	<Navbar className='container'>
 		<Link href='/' passHref>
 			<a>
@@ -25,7 +25,7 @@ const Nav = () => (
 			</a>
 		</Link>
 		<NavDesktop />
-		<NavMobile />
+		<NavMobile theme={theme} setTheme={setTheme} />
 	</Navbar>
 );
 

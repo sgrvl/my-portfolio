@@ -20,7 +20,7 @@ const TopButton = styled.div`
 	transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
 
 	&:hover {
-		transform: translate(-5px, -5px);
+		transform: translate(-6px, -6px);
 	}
 `;
 

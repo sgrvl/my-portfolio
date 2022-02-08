@@ -4,7 +4,7 @@ import FixedLinks from './fixedLinks/fixedLinks';
 
 const Layout = ({ children, theme, setTheme }) => (
 	<>
-		<Nav />
+		<Nav theme={theme} setTheme={setTheme} />
 		<FixedLinks theme={theme} setTheme={setTheme} />
 		<main>{children}</main>
 		<Footer />

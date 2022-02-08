@@ -57,7 +57,6 @@ const dark = {
 
 const MyApp = ({ Component, pageProps }) => {
 	const [theme, setTheme] = useState(true);
-
 	return (
 		<ThemeProvider theme={theme ? light : dark}>
 			<Layout theme={theme} setTheme={setTheme}>

@@ -13,7 +13,7 @@ const Wrap = styled.div`
 	align-items: center;
 	gap: 1em;
 
-	@media (max-width: 992px) {
+	@media (max-width: 768px) {
 		display: none;
 	}
 `;
