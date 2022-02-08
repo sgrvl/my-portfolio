@@ -4,7 +4,10 @@ import styled from 'styled-components';
 const Wrap = styled.div`
 	background-color: ${(props) => props.theme.white};
 	border-radius: 4px;
-	max-width: 788px;
+	max-width: 688px;
+	@media (min-width: 1200px) {
+		max-width: 788px;
+	}
 	margin: 0 auto;
 	color: ${(props) => props.theme.darkshades};
 	padding-bottom: 2rem;

@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import Logo from '../components/logo';
+import Logo from '../logo';
 import NavDesktop from './navDesktop';
 import NavMobile from './navMobile';
 

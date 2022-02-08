@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import wavingHand from '../public/images/waving-hand.png';
-import mapPinLight from '../public/images/map-pin-orange.png';
+import MapPin from '../components/mapPin';
 import Projet from '../components/projetWrap';
 import ContactForm from '../components/contactform';
 
@@ -92,7 +92,7 @@ export default function Home() {
 							tout ce qui touche au JavaScript. Je suis aussi designeur à mes heures!
 						</p>
 						<div>
-							<span>Québec, Canada</span> <Image src={mapPinLight} alt='Épingle de carte' />
+							<span>Québec, Canada</span> <MapPin />
 						</div>
 					</TitleBox>
 				</TitleWrap>

@@ -16,7 +16,8 @@ const Grid = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	gap: 3em;
+	gap: 2em;
+	margin: 0 3em;
 `;
 
 export default function Projets() {

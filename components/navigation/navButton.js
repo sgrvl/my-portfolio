@@ -32,15 +32,19 @@ const BottomButton = styled.div`
 	border-radius: 4px;
 `;
 
+const StyledLink = styled.a`
+	color: ${(props) => props.theme.darkshades};
+`;
+
 const Button = ({ text, href, icon }) => (
 	<>
-		<a href={href} target='_blank' rel='noreferrer'>
+		<StyledLink href={href} target='_blank' rel='noreferrer'>
 			<TopButton>
 				{icon}
 				{text}
 			</TopButton>
 			<BottomButton />
-		</a>
+		</StyledLink>
 	</>
 );
 

@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import styled from 'styled-components';
 
 const TopButton = styled.button`
+	color: ${(props) => props.theme.darkshades};
 	display: flex;
 	align-items: center;
 	justify-content: center;

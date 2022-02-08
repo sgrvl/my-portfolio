@@ -1,12 +1,14 @@
 import Footer from './footer';
-import Nav from '../navigation/nav';
+import Nav from './navigation/nav';
+import FixedLinks from './fixedLinks/fixedLinks';
 
-export default function Layout({ children }) {
-	return (
-		<>
-			<Nav />
-			<main>{children}</main>
-			<Footer />
-		</>
-	);
-}
+const Layout = ({ children, theme, setTheme }) => (
+	<>
+		<Nav />
+		<FixedLinks theme={theme} setTheme={setTheme} />
+		<main>{children}</main>
+		<Footer />
+	</>
+);
+
+export default Layout;

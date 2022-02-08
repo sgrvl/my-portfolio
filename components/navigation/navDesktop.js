@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import NavLink from './navLink';
 import Button from './navButton';
-import Icon from '../components/icon';
+import Icon from '../icon';
 
 const Links = styled.ul`
 	list-style: none;
@@ -10,7 +10,7 @@ const Links = styled.ul`
 	gap: 40px;
 	align-items: center;
 
-	@media (max-width: 650px) {
+	@media (max-width: 992px) {
 		display: none;
 	}
 `;
