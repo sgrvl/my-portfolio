@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 const Wrap = styled.div`
@@ -68,12 +68,19 @@ const Wrap = styled.div`
 		&:visited:hover,
 		&:focus,
 		&:active {
-			color: ${(props) => props.theme.darkshades} !important;
+			color: ${(props) => props.theme.darkshades};
 		}
 
 		&:visited,
 		&:link {
 			color: ${(props) => props.theme.main};
+		}
+	}
+
+	cursor: pointer;
+	&:hover {
+		a {
+			color: ${(props) => props.theme.darkshades} !important;
 		}
 	}
 
@@ -95,6 +102,9 @@ const Wrap = styled.div`
 	grid-template: repeat(5, auto) / 1fr 1fr;
 `;
 
-export default function Projet({ children, link }) {
-	return <Wrap>{children}</Wrap>;
-}
+const Projet = ({ children, link }) => {
+	const router = useRouter();
+	return <Wrap onClick={() => router.push(link)}>{children}</Wrap>;
+};
+
+export default Projet;
