@@ -24,6 +24,23 @@ const TechImg = styled.img`
 	max-height: 24px;
 `;
 
+const StyledLink = styled.a`
+	margin-top: 1rem;
+	color: ${(props) => props.theme.main};
+
+	&:hover,
+	&:visited:hover,
+	&:focus,
+	&:active {
+		color: ${(props) => props.theme.darkshades};
+	}
+
+	&:visited,
+	&:link {
+		color: ${(props) => props.theme.main};
+	}
+`;
+
 export default function Projets() {
 	return (
 		<>
@@ -38,7 +55,7 @@ export default function Projets() {
 				<Grid>
 					{Object.keys(data).map((d, index) => {
 						return (
-							<Card key={`Projet ${index}`}>
+							<Card key={`Projet ${index}`} link={`/projets/${d}`}>
 								<h2>{data[d].titre}</h2>
 								<span className='date'>{data[d].date}</span>
 								<p>{data[d].desc}</p>
@@ -53,6 +70,9 @@ export default function Projets() {
 							</Card>
 						);
 					})}
+					<StyledLink href='https://github.com/sgrvl' target='_blank' rel='noreferrer'>
+						Voir tous mes projets sur GitHub
+					</StyledLink>
 				</Grid>
 			</div>
 		</>

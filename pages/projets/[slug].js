@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 
 const Title = styled.h1`
 	color: ${(props) => props.theme.main};
-	font-size: clamp(2.5em, 8vw, 5em);
+	font-size: clamp(3em, 8vw, 5em);
 	text-align: center;
 	font-family: 'Merriweather', serif;
 	max-width: 736px;
@@ -65,6 +65,9 @@ const TechWrap = styled.div`
 const Description = styled.p`
 	text-align: center;
 	max-width: 550px;
+	color: ${(props) => props.theme.darkshades};
+	font-weight: 500;
+
 	@media (max-width: 768px) {
 		max-width: 788px;
 	}
@@ -75,14 +78,30 @@ const Description = styled.p`
 		max-width: 788px;
 	}
 	margin: 0 auto;
+
+	a {
+		color: ${(props) => props.theme.main};
+
+		&:hover,
+		&:visited:hover,
+		&:focus,
+		&:active {
+			color: ${(props) => props.theme.darkshades};
+		}
+
+		&:visited,
+		&:link {
+			color: ${(props) => props.theme.main};
+		}
+	}
 `;
 
 const StyledLink = styled.a`
 	display: block;
 	text-align: center;
 	margin-top: 3rem;
-	color: ${(props) => props.theme.main};
 	font-weight: 400;
+	color: ${(props) => props.theme.main};
 
 	&:hover,
 	&:visited:hover,

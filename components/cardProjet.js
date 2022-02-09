@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 const Wrap = styled.div`
@@ -15,6 +15,7 @@ const Wrap = styled.div`
 
 	display: grid;
 	grid-template: repeat(3, min-content) auto / 1fr 1fr;
+	cursor: pointer;
 
 	h2 {
 		margin: 0;
@@ -48,12 +49,18 @@ const Wrap = styled.div`
 		&:visited:hover,
 		&:focus,
 		&:active {
-			color: ${(props) => props.theme.darkshades} !important;
+			color: ${(props) => props.theme.darkshades};
 		}
 
 		&:visited,
 		&:link {
 			color: ${(props) => props.theme.main};
+		}
+	}
+
+	&:hover {
+		a {
+			color: ${(props) => props.theme.darkshades};
 		}
 	}
 
@@ -70,6 +77,10 @@ const Wrap = styled.div`
 	}
 `;
 
-export default function Card({ children }) {
-	return <Wrap>{children}</Wrap>;
-}
+const Card = ({ children, link }) => {
+	const router = useRouter();
+
+	return <Wrap onClick={() => router.push(link)}>{children}</Wrap>;
+};
+
+export default Card;
